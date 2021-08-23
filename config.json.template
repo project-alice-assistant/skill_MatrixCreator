@@ -1,0 +1,68 @@
+{
+	"enableTemperatureSensor": {
+		"defaultValue": false,
+		"dataType": "boolean",
+		"isSensitive": false,
+		"description": "Enables the onboard temperature/humidity sensor"
+	},
+	"enableAltitudeSensor": {
+	  "defaultValue": false,
+	  "dataType": "boolean",
+	  "isSensitive": false,
+	  "description": "Enables the onboard pressure/altimetry sensor"
+	},
+	"enableUVSensor": {
+	  "defaultValue": false,
+	  "dataType": "boolean",
+	  "isSensitive": false,
+	  "description": "Enables the onboard UV sensor"
+	},
+	"enableIMUSensor": {
+	  "defaultValue": false,
+	  "dataType": "boolean",
+	  "isSensitive": false,
+	  "description": "Enables the onboard giro/accelerometer/magnetometer sensor"
+	},
+	"sensorReportInterval": {
+	  "defaultValue": 5,
+	  "dataType": "integer",
+	  "isSensitive": false,
+	  "description": "Sets the interval, in minutes, at which the sensors send their data"
+	},
+	"enableNFC": {
+	  "defaultValue": false,
+	  "dataType": "boolean",
+	  "isSensitive": false,
+	  "description": "Enables the onboard NFC reader/writer. This requires some manual steps due to NXT proprietary packages! Please read instruction"
+	},
+	"enableLeds": {
+	  "defaultValue": false,
+	  "dataType": "boolean",
+	  "isSensitive": false,
+	  "description": "Enables the onboard leds"
+	},
+	"enableZigbee": {
+	  "defaultValue": false,
+	  "dataType": "boolean",
+	  "isSensitive": false,
+	  "description": "Enables the onboard Zigbee chip"
+	},
+	"enableZWave": {
+	  "defaultValue": false,
+	  "dataType": "boolean",
+	  "isSensitive": false,
+	  "description": "Enables the onboard Z-Wave chip"
+	},
+	"enableIRReceiver": {
+	  "defaultValue": false,
+	  "dataType": "boolean",
+	  "isSensitive": false,
+	  "description": "Enables the onboard IR receiver"
+	},
+	"enableIRBlaster": {
+	  "defaultValue": false,
+	  "dataType": "boolean",
+	  "isSensitive": false,
+	  "description": "Enables the onboard IR blaster"
+	}
+}
