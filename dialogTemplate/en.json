@@ -1,7 +1,5 @@
 {
-    "skill": "Matrixcreator",
-    "icon": "time",
-    "description": "Access matrix creator sensors",
-    "slotTypes": [],
-    "intents": []
+  "skill": "MatrixCreator",
+  "slotTypes": [],
+  "intents": []
 }
