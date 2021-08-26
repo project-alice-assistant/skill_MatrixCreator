@@ -1,20 +1,12 @@
-# Matrixcreator
-### Download
-##### > WGET method
-```bash
-wget http://bit.ly/????????? -O ~/ProjectAlice/system/skillInstallTickets/Matrixcreator.install
-```
-##### > Alice CLI method
-```bash
-./alice add skill Psychokiller1888 Matrixcreator
-```
-### Description
-Access matrix creator sensors
-- Version: 0.0.1
-- Author: {username}
+# MatrixCreator
+
+[![Continuous Integration](https://gitlab.com/project-alice-assistant/skills/skill_MatrixCreator/badges/master/pipeline.svg)](https://gitlab.com/project-alice-assistant/skills/skill_MatrixCreator/pipelines/latest) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=project-alice-assistant_skill_MatrixCreator&metric=alert_status)](https://sonarcloud.io/dashboard?id=project-alice-assistant_skill_MatrixCreator)
+
+Access Matrix Creator sensors
+
+- Author: Psychokiller1888
 - Maintainers: N/A
 - Alice minimum version: 1.0.0
-- Conditions:
-  - en
-- Pip requirements: N/A
-- System requirements: N/A
+- Languages:
+
+	- en
