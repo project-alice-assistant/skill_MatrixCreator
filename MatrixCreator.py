@@ -17,10 +17,11 @@
 #
 #  Last modified: 2021.08.20 at 18:39:56 CEST
 import time
+from typing import Any, Dict
 
-from core.base.model.AliceSkill import AliceSkill
 from matrix_lite import sensors
 
+from core.base.model.AliceSkill import AliceSkill
 from core.util.model.TelemetryType import TelemetryType
 
 
@@ -39,9 +40,11 @@ class MatrixCreator(AliceSkill):
 
 		if self.getConfig('enableTemperatureSensor'):
 			self.ThreadManager.newThread(name='matrix_sensor_temperature', target=self.temperatureSensorThread)
-		elif self.getConfig('enableAltitudeSensor'):
+
+		if self.getConfig('enableAltitudeSensor'):
 			self.ThreadManager.newThread(name='matrix_sensor_altitude', target=self.altitudeSensorThread)
-		elif self.getConfig('enableUVSensor'):
+
+		if self.getConfig('enableUVSensor'):
 			self.ThreadManager.newThread(name='matrix_sensor_uv', target=self.uvSensorThread)
 
 
@@ -49,8 +52,10 @@ class MatrixCreator(AliceSkill):
 		while True:
 			data = sensors.humidity.read()
 			if data:
-				self.TelemetryManager.storeData(ttype=TelemetryType.TEMPERATURE, value=data.get('temperature', 999), service=self.name, deviceId=self.DeviceManager.getMainDevice().id, locationId=self.DeviceManager.getMainDevice().parentLocation)
-				self.TelemetryManager.storeData(ttype=TelemetryType.HUMIDITY, value=data.get('humidity', -1), service=self.name, deviceId=self.DeviceManager.getMainDevice().id, locationId=self.DeviceManager.getMainDevice().parentLocation)
+				self.store(data={
+					TelemetryType.TEMPERATURE: data.temperature,
+					TelemetryType.HUMIDITY   : data.humidity
+				})
 			else:
 				self.logWarning('Failed retrieving temperature/humidity data')
 
@@ -61,9 +66,11 @@ class MatrixCreator(AliceSkill):
 		while True:
 			data = sensors.pressure.read()
 			if data:
-				self.TelemetryManager.storeData(ttype=TelemetryType.TEMPERATURE, value=data.get('temperature', 999), service=self.name, deviceId=self.DeviceManager.getMainDevice().id, locationId=self.DeviceManager.getMainDevice().parentLocation)
-				self.TelemetryManager.storeData(ttype=TelemetryType.PRESSURE, value=data.get('pressure', -1), service=self.name, deviceId=self.DeviceManager.getMainDevice().id, locationId=self.DeviceManager.getMainDevice().parentLocation)
-				self.TelemetryManager.storeData(ttype=TelemetryType.ALTITUDE, value=data.get('altitude', -999), service=self.name, deviceId=self.DeviceManager.getMainDevice().id, locationId=self.DeviceManager.getMainDevice().parentLocation)
+				self.store(data={
+					TelemetryType.TEMPERATURE: data.temperature,
+					TelemetryType.PRESSURE   : data.pressure,
+					TelemetryType.ALTITUDE   : data.altitude
+				})
 			else:
 				self.logWarning('Failed retrieving temperature/pressure/altitude data')
 
@@ -74,8 +81,13 @@ class MatrixCreator(AliceSkill):
 		while True:
 			data = sensors.uv.read()
 			if data:
-				self.TelemetryManager.storeData(ttype=TelemetryType.UV_INDEX, value=data.get('uv', 999), service=self.name, deviceId=self.DeviceManager.getMainDevice().id, locationId=self.DeviceManager.getMainDevice().parentLocation)
+				self.store(data={TelemetryType.UV_INDEX: data.uv})
 			else:
 				self.logWarning('Failed retrieving uv data')
 
 			time.sleep(self.getConfig('sensorReportInterval') * 60)
+
+
+	def store(self, data: Dict[TelemetryType, Any]):
+		for ttype, item in data.items():
+			self.TelemetryManager.storeData(ttype=ttype, value=item, service=self.name, deviceId=self.DeviceManager.getMainDevice().id, locationId=self.DeviceManager.getMainDevice().parentLocation)

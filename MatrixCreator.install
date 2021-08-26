@@ -1,0 +1,22 @@
+{
+  "name": "MatrixCreator",
+  "speakableName": "Matrix creator",
+  "version": "1.0.0",
+  "icon": "fab fa-creative-commons-sampling",
+  "author": "Psychokiller1888",
+  "maintainers": [],
+  "desc": "Access Matrix Creator sensors",
+  "aliceMinVersion": "1.0.0-rc1",
+  "pipRequirements": [
+	"matrix-lite",
+	"matrix-lite-nfc"
+  ],
+  "systemRequirements": [],
+  "script": "matrixcreator.sh",
+  "rebootAfterInstall": true,
+  "conditions": {
+	"lang": [
+	  "en"
+	]
+  }
+}
