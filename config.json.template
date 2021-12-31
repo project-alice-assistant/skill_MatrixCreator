@@ -9,7 +9,7 @@
 	  "defaultValue": false,
 	  "dataType": "boolean",
 	  "isSensitive": false,
-	  "description": "Enables the onboard pressure/altimetry sensor"
+	  "description": "Enables the onboard pressure/altimeter sensor"
 	},
 	"enableUVSensor": {
 	  "defaultValue": false,
